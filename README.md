@@ -15,7 +15,7 @@ This implementation is compatible with at least the following Schemes:
 - Gerbil: `gxi test.scm`
 - Guile: `guile test.scm`
 - Kawa: `kawa test.scm`
-- Larceny: `echo '(import (scheme write)) (include "test.scm")' | larceny -r7`
+- Larceny: `echo '(import (scheme write) (scheme process-context)) (include "test.scm")' | larceny -r7`
 - Sagittarius: `sash -e'(import (scheme base) (scheme write))' test.scm`
 
 [1]: https://clojure.org/guides/threading_macros
