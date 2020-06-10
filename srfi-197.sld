@@ -1,4 +1,4 @@
-(define-library (threading-macros)
+(define-library (srfi-197)
   (export -> ->> as->
           some-> some->>
           cond-> cond->>
@@ -6,4 +6,4 @@
 
   (import (scheme base))
 
-  (include "threading-macros.scm"))
+  (include "srfi-197.scm"))

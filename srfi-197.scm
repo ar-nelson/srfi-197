@@ -67,7 +67,7 @@
     ((cond->> x (guard? fn) . rest)
       (let ((y (if guard? (fn x) x)))
         (cond->> y . rest)))))
-    
+
 (define-syntax lambda->
   (syntax-rules ()
     ((lambda-> . rest)
