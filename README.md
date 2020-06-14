@@ -1,7 +1,7 @@
-# SRFI 197: Threading Macros
+# SRFI 197: Expression Chaining Operators
 
-Scheme implementation of [Clojure threading macros][1]. This is the sample
-imeplementation of [SRFI 197][2].
+A Scheme library that implements `chain`, an operator based on [Clojure
+threading macros][1]. This is the sample imeplementation of [SRFI 197][2].
 
 The implementation (`srfi-197.scm`) consists entirely of `syntax-rules` macros
 and should be compatible with all R7RS Schemes. Its only dependency is [SRFI
