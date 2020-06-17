@@ -1,12 +1,4 @@
-(cond-expand
-  ((or chibi kawa larceny sagittarius)
-    (import (scheme base) (scheme write) (scheme process-context) (srfi 2)))
-  (guile
-    (import (scheme base) (srfi srfi-2)))
-  (else))
-
 (include "./srfi-64-minimal.scm")
-(include "./srfi-197.scm")
 
 (define (exclamation x) (string-append x "!"))
 
