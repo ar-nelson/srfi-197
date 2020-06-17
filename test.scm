@@ -19,6 +19,10 @@
          (string-append "bar" <>)
          (string-append <> "baz")))
 
+(test-equal "chain with <> in operator position" 3
+  (chain +
+         (<> 1 2)))
+
 (test-equal "chain multiple <>" "quxfoo/quxbar"
   (chain "qux"
          (foo+bar)
