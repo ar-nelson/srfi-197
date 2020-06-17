@@ -29,7 +29,7 @@
       (%chain (first-step ...) () () () ((step ...) ...) (initial-value)))))
 
 (define-syntax %chain-and
-  (syntax-rules (<> <...>)
+  (syntax-rules (<>)
     ; (_ in-step out-step in-vars out-vars in-steps out-steps)
     ((_ () () () (var ...) () (step ... last-step))
       (and-let* ((var step) ...) last-step))
@@ -39,8 +39,6 @@
       (%chain-and () () () (out-vars ... chain-var) in-steps (out-steps ... (step ... chain-var))))
     ((_ () step (var) (out-vars ...) in-steps (out-steps ...))
       (%chain-and () () () (out-vars ... var) in-steps (out-steps ... step)))
-    ((_ (<...> . _) . _)
-      (syntax-error "chain-and does not support <...>"))
     ((_ (<> . in-step) (out-step ...) () . rest)
       (%chain-and in-step (out-step ... chain-var) (chain-var) . rest))
     ((_ (<> . _) . _)
@@ -55,7 +53,7 @@
       (%chain-and (first-step ...) () () () ((step ...) ...) (initial-value)))))
 
 (define-syntax %chain-when
-  (syntax-rules (<> <...>)
+  (syntax-rules (<>)
     ; (_ in-step out-step guard? chain-var in-steps out-expr)
     ((_ () () _ _ () out-expr) out-expr)
     ((_ () () _ _ ((next-guard? next-step) . in-steps) out-expr)
@@ -68,8 +66,6 @@
       (%chain-when () () #f #f in-steps
         (let ((chain-var out-expr))
           (if guard? step chain-var))))
-    ((_ (<...> . _) . _)
-      (syntax-error "chain-when does not support <...>"))
     ((_ (<> . in-step) (out-step ...) guard? #f . rest)
       (%chain-when in-step (out-step ... chain-var) guard? chain-var . rest))
     ((_ (<> . _) . _)
