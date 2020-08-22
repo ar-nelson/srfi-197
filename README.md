@@ -1,4 +1,4 @@
-# SRFI 197: Expression Chaining Operators
+# SRFI 197: Pipeline Operators
 
 A Scheme library that implements `chain`, an operator based on [Clojure
 threading macros][1]. This is the sample implementation of [SRFI 197][2].
