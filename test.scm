@@ -44,6 +44,18 @@
          (foo+bar _)
          (string-append _ "baz" _ ...)))
 
+(test-equal "chain with custom _" "bazbarfoo!"
+  (chain "" <>
+         (string-append "foo" <>)
+         (string-append "bar" <>)
+         (string-append "baz" <>)
+         (exclamation <>)))
+
+(test-equal "chain with custom ..." "bazquxfooquxbar"
+  (chain "qux" - ---
+         (foo+bar -)
+         (string-append "baz" - ---)))
+
 (test-equal "chain-and" "bazbarfoo!"
   (chain-and ""
              (string-append "foo" _)
@@ -70,6 +82,17 @@
              (string-append "baz" _)
              (exclamation _)))
 
+(test-equal "chain-and short-circuit first" #f
+  (chain-and #f
+             (not _)))
+
+(test-equal "chain-and with custom _" "bazbarfoo!"
+  (chain-and "" <>
+             (string-append "foo" <>)
+             (string-append "bar" <>)
+             (string-append "baz" <>)
+             (exclamation <>)))
+
 (test-equal "chain-when" "bazfoo"
   (chain-when ""
               ((= (+ 2 2) 4) (string-append "foo" _))
@@ -89,6 +112,12 @@
               (#t (string-append "bar"))
               (#f (string-append _ "baz"))
               (#t (string-append _ "qux"))))
+
+(test-equal "chain-when with custom _" "bazfoo"
+  (chain-when "" <>
+              ((= (+ 2 2) 4) (string-append "foo" <>))
+              ((= (+ 2 2) 5) (string-append "bar" <>))
+              (#t (string-append "baz" <>))))
 
 (test-equal "chain-lambda" "bazbarfoo!"
   ((chain-lambda (string-append "foo" _)
@@ -128,6 +157,21 @@
    "foo"
    "baz"
    "qux"))
+
+(test-equal "chain-lambda with custom _" "bazbarfoo!"
+  ((chain-lambda <>
+                 (string-append "foo" <>)
+                 (string-append "bar" <>)
+                 (string-append "baz" <>)
+                 (exclamation <>))
+   ""))
+
+(test-equal "chain-lambda with custom ..." "foobarbazqux"
+  ((chain-lambda - ---
+                 (string-append "foo" - ---)
+                 (string-append - "qux"))
+   "bar"
+   "baz"))
 
 (test-equal "nest" '(1 2 (3 (4) 5))
   (nest (quote _)

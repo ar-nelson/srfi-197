@@ -12,10 +12,10 @@ This implementation is compatible with at least the following Schemes:
 
 - Chez: `chezscheme test-r6rs.scm`
 - Chibi: `chibi-scheme test-r7rs.scm`
-- Chicken: `csi -qb srfi-197.scm test.scm`
+- Chicken: `csi -qb test-r7rs.scm`
 - Gauche: `gosh test-r7rs.scm`
 - Guile: `guile test-r6rs.scm`
-- Kawa: `kawa test-r7rs.scm`
+- Kawa: `kawa test-kawa.scm`
 - Larceny: `larceny -r7 < test-r7rs.scm`
 - Sagittarius: `sash test-r7rs.scm`
 
